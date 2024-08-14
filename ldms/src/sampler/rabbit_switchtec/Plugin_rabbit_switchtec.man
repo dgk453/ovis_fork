@@ -1,0 +1,52 @@
+.\" Manpage for Plugin_rabbit_switchtec
+.\" Contact ovis-help@ca.sandia.gov to correct errors or typos.
+.TH man 7 "13 Aug 2024" "v4" "LDMS Plugin rabbit_switchtec man page"
+
+.SH NAME
+Plugin_rabbit_switchtec - man page for the LDMS rabbit_switchtec plugin
+
+.SH SYNOPSIS
+Within ldmsd_controller or a configuration file:
+.br
+config name=rabbit_switchtec [ <attr>=<value> ]
+
+.SH DESCRIPTION
+With LDMS (Lightweight Distributed Metric Service), plugins for the ldmsd (ldms daemon) are configured via ldmsd_controller
+or a configuration file. The rabbit_switchtec plugin provides switchtec linkstat info from /dev/switchtec{0-1}.
+
+.SH CONFIGURATION ATTRIBUTE SYNTAX
+The rabbit_switchtec plugin uses the sampler_base base class. This man page covers only the configuration attributes, or those with default values, specific to the this plugin; see ldms_sampler_base.man for the attributes of the base class.
+
+
+
+.TP
+.BR config
+name=<plugin_name> [schema=<sname>]
+.br
+configuration line
+.RS
+.TP
+name=<plugin_name>
+.br
+This MUST be rabbit_switchtec.
+.TP
+schema=<schema>
+.br
+Optional schema name. It is intended that the same sampler on different nodes with different metrics have a
+different schema. If not specified, will default to `rabbit_switchtec`.
+.RE
+
+.SH BUGS
+No known bugs.
+
+.SH EXAMPLES
+.PP
+Within ldmsd_controller or a configuration file:
+.nf
+load name=rabbit_switchtec
+config name=rabbit_switchtec producer=vm1_1 instance=vm1_1/rabbit_switchtec
+start name=rabbit_switchtec interval=1000000
+.fi
+
+.SH SEE ALSO
+ldmsd(8), ldms_quickstart(7), ldmsd_controller(8), ldms_sampler_base(7)

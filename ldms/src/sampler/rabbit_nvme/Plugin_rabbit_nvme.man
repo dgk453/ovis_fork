@@ -1,0 +1,52 @@
+.\" Manpage for Plugin_rabbit_nvme
+.\" Contact ovis-help@ca.sandia.gov to correct errors or typos.
+.TH man 7 "13 Aug 2024" "v4" "LDMS Plugin rabbit_nvme man page"
+
+.SH NAME
+Plugin_rabbit_nvme - man page for the LDMS rabbit_nvme plugin
+
+.SH SYNOPSIS
+Within ldmsd_controller or a configuration file:
+.br
+config name=rabbit_nvme [ <attr>=<value> ]
+
+.SH DESCRIPTION
+With LDMS (Lightweight Distributed Metric Service), plugins for the ldmsd (ldms daemon) are configured via ldmsd_controller
+or a configuration file. The rabbit_nvme plugin provides nvme status from /dev/switchtec{0-16}.
+
+.SH CONFIGURATION ATTRIBUTE SYNTAX
+The rabbit_nvme plugin uses the sampler_base base class. This man page covers only the configuration attributes, or those with default values, specific to the this plugin; see ldms_sampler_base.man for the attributes of the base class.
+
+
+
+.TP
+.BR config
+name=<plugin_name> [schema=<sname>]
+.br
+configuration line
+.RS
+.TP
+name=<plugin_name>
+.br
+This MUST be rabbit_nvme.
+.TP
+schema=<schema>
+.br
+Optional schema name. It is intended that the same sampler on different nodes with different metrics have a
+different schema. If not specified, will default to `rabbit_nvme`.
+.RE
+
+.SH BUGS
+No known bugs.
+
+.SH EXAMPLES
+.PP
+Within ldmsd_controller or a configuration file:
+.nf
+load name=rabbit_nvme
+config name=rabbit_nvme producer=vm1_1 instance=vm1_1/rabbit_nvme
+start name=rabbit_nvme interval=1000000
+.fi
+
+.SH SEE ALSO
+ldmsd(8), ldms_quickstart(7), ldmsd_controller(8), ldms_sampler_base(7)
